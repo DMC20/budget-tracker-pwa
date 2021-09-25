@@ -17,7 +17,7 @@ const FILES_TO_CACHE = [
     './icons/icon-512-512.png',
 ];
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function (cache) {
             console.log('installing cache: ' + CACHE_NAME )
@@ -26,7 +26,7 @@ self.addEventListener('install', function(event) {
     )
 });
 
-self.addEventListener('activate', function (event) {
+self.addEventListener('activate', function(event) {
     event.waitUntil(
         caches.keys().then(function (keyList) {
             let cacheKeeplist = keyList.filter(function (key) {
@@ -39,9 +39,10 @@ self.addEventListener('activate', function (event) {
                     console.log('deleting cache : ' + keyList[i] );
                     return caches.delete(keyList[i]);
                 }
-            }));
+            })
+            );
         })
-    )
+    );
 });
 
 self.addEventListener('fetch', function (event) {
@@ -53,7 +54,7 @@ self.addEventListener('fetch', function (event) {
                 return request
             } else {
                 console.log('file is not cached, fetching : ' + event.request.url);
-                return fetch(e.request)
+                return fetch(event.request)
             }
 
         })
