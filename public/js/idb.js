@@ -1,5 +1,4 @@
 let db;
-
 const request = indexedDB.open('tracker', 1);
 
 request.onupgradeneeded = function(event) {
@@ -9,8 +8,9 @@ request.onupgradeneeded = function(event) {
 
 request.onsuccess = function(event) {
     db = event.target.result;
-    if(navigator.onLine) 
-    uploadData();
+    if(navigator.onLine) {
+        uploadData();
+    }
 };
 
 request.onerror = function(event) {
@@ -34,7 +34,7 @@ function uploadData() {
             method: "POST",
             body: JSON.stringify(getAll.result),
             headers: {
-                Accept: 'application/json, text/plain', 
+                Accept: 'application/json, text/plain, */*', 
                 'Content-type': 'application/json'
             }
         })
