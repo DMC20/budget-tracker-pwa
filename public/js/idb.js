@@ -10,6 +10,7 @@ request.onsuccess = function(event) {
     db = event.target.result;
     if(navigator.onLine) {
         uploadData();
+        console.log('it is working as should!!!')
     }
 };
 
